@@ -39,22 +39,84 @@ public class Robot extends SampleRobot {
     	System.out.println("This is autonomous---"+frontSwitch.get());
     	drivetrain.setSafetyEnabled(false);
         
+        exampleOne();
+    }
+
+    /**
+     * WHERE SOLUTIONS TO EXERCISES and Examples live
+     */
+    
+    private void exampleOne() {
+        //If we are driving forward AND the front switch is pressed, drive backwards
         double speed = 0.2;
         drivetrain.drive(speed, 0); //start driving
         System.out.println("Driving forward");
         while (isEnabled() && isAutonomous()) {
-            //If we are driving forward AND the front switch is pressed
-            //drive backwards
-        	if (!frontSwitch.get()){ //If the switch was pressed
-        		System.out.println("driving backward");
+
+        	if (!frontSwitch.get()){ //If the front switch was pressed
+        		System.out.println("Driving backward");
         		drivetrain.drive(-speed,0); //Back away
         		Timer.delay(2.0); // for 2 seconds
-        		System.out.println("driving forward");
+        		System.out.println("Driving forward");
         		drivetrain.drive(speed, 0); // Start driving again
-        	}
+        	    }
         }
     }
 
+    private void exercise_1()
+    {
+	//If we are driving forward AND the front switch is pressed, drive backwards.
+	// Keep driving back till back switch is pressed, then drive forwards again!
+        double speed = 0.2;
+        drivetrain.drive(speed, 0); //start driving
+        System.out.println("Driving forward");
+        while (isEnabled() && isAutonomous()) {
+
+        	if (!frontSwitch.get()){ //If the front switch was pressed
+        		System.out.println("Driving backward");
+			drivetrain.drive(-speed,0); //Back away
+        	}
+		else if (!backSwitch.get()) { //If the back switch was pressed
+			System.out.println("Driving forward");
+			drivetrain.drive(speed,0); //Move forward again!	
+		}
+        }
+
+    }
+    
+    private void exercise_1_1()
+    {
+	//If we are driving forward AND the front switch is pressed, drive backwards.
+	// Keep driving back till back switch is pressed, then drive forwards again!
+        double speed = 0.2;
+        drivetrain.drive(speed, 0); //start driving
+        System.out.println("Driving forward");
+        while (isEnabled() && isAutonomous()) {
+
+        	if (!frontSwitch.get()){ //If the front switch was pressed
+        		System.out.println("Driving backward");
+			drivetrain.drive(-speed,0); //Back away
+			Timer.delay(2.0); // for 2 seconds
+			System.out.println("Turning right");
+			drivetrain.turnRight(); //Turn right - TODO
+			System.out.println("Driving backward");
+			drivetrain.drive(-speed,0); //Back away
+			
+        	}
+		else if (!backSwitch.get()) { //If the back switch was pressed
+			System.out.println("Driving forward");
+			drivetrain.drive(speed,0);//Move forward
+			Timer.delay(2.0); // for 2 seconds
+			System.out.println("Turning right");
+			drivetrain.turnLeft(); //Turn left - TODO
+			Timer.delay(2.0); // for 2 seconds	
+			drivetrain.drive(-speed,0); //Move forward
+		}
+        }
+
+    }
+     
+     
     /**
      * This function is called once each time the robot enters operator control.
      */
