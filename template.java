@@ -8,7 +8,7 @@
 package org.usfirst.frc.team1234.robot;
 
 import edu.wpi.first.wpilibj.DigitalInput;
-import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.SampleRobot;
 import edu.wpi.first.wpilibj.Timer;
@@ -29,20 +29,24 @@ public class Robot extends SampleRobot {
     /*
     Drive train: this is what makes it move
     */
-   RobotDrive drivetrain = new RobotDrive(0, 1);
+   RobotDrive driveTrain = new RobotDrive(0, 1);
    DigitalInput frontSwitch = new DigitalInput(0);
-   DigitalInput backSwitch = newDigitalInput(1);
-   AnalogChannel frontRangeFinder = new AnalogChannel(0);
-   AnalogChannel backRangeFinder = new AnalogChannel(1);
+   DigitalInput backSwitch = new DigitalInput(1);
+   AnalogInput frontRangeFinder = new AnalogInput(0);
+   AnalogInput backRangeFinder = new AnalogInput(1);
    
     /**
      * This function is called once each time the robot enters autonomous mode.
      */
     public void autonomous() {
     	System.out.println("This is autonomous---"+frontSwitch.get());
-    	drivetrain.setSafetyEnabled(false);
+    	driveTrain.setSafetyEnabled(false);
         
         exampleOne();
+        //exercise_1();
+        //exercise_1_1();
+        //exampleTwo();
+        //exercise_3_0();
     }
 
     /**
@@ -52,59 +56,62 @@ public class Robot extends SampleRobot {
     private void exampleOne() {
         //If we are driving forward AND the front switch is pressed, drive backwards
         double speed = 0.2;
-        drivetrain.drive(speed, 0); //start driving
+        driveTrain.drive(speed, 0); //start driving
         System.out.println("Driving forward");
         while (isEnabled() && isAutonomous()) {
 
         	if (!frontSwitch.get()){ //If the front switch was pressed
         		System.out.println("Driving backward");
-        		drivetrain.drive(-speed,0); //Back away
+        		driveTrain.drive(-speed,0); //Back away
         		Timer.delay(2.0); // for 2 seconds
         		System.out.println("Driving forward");
-        		drivetrain.drive(speed, 0); // Start driving again
+        		driveTrain.drive(speed, 0); // Start driving again
         	    }
         }
     }
 
     private void exercise_1()
     {
-  	//If we are driving forward AND the front switch is pressed, drive backwards.
-  	// Keep driving back till back switch is pressed, then drive forwards again!
+	//If we are driving forward AND the front switch is pressed, drive backwards.
+	// Keep driving back till back switch is pressed, then drive forwards again!
+
     }
     
     private void exercise_1_1()
     {
-  	//If we are driving forward AND the front switch is pressed, drive backwards.
-  	// Keep driving back till back switch is pressed, then drive forwards again!
+	//If we are driving forward AND the front switch is pressed, drive backwards.
+	// Keep driving back till back switch is pressed, then drive forwards again!
+
     }
      
      private double getFrontDistance(){
      	// get distance based on front range finder
-     	return frontRangeFiner.getVoltage() * 1000 / 0.98;
+     	return frontRangeFinder.getVoltage() * 1000 / 0.98;
      }
      
      private double getBackDistance(){
      	// get distance based on back range finder
-     	return backRangeFiner.getVoltage() * 1000 / 0.98;
+     	return backRangeFinder.getVoltage() * 1000 / 0.98;
      }
      
-     private double exampleTwo(){
+     private void exampleTwo(){
      	// while we are less than 5 inches away from wall
-     	  driveTrain.drive(0.2, 0); 
+     	driveTrain.drive(0.2, 0); 
 
-	      while (isEnabled() && isAutonomous()) {
-		      if (getFrontDistance() < 5) {				
-			      driveTrain.drive(-0.2, 0); 
-			      Timer.delay(2.0);          
-			      driveTrain.drive(0, 0.2);
-			      Timer.delay(2.0);
-			      driveTrain.drive(0.2, 0);
- 		      }
-	        }
-      }
+     	while (isEnabled() && isAutonomous()) {
+		  if (getFrontDistance() < 5) {				
+			driveTrain.drive(-0.2, 0); 
+			Timer.delay(2.0);          
+			driveTrain.drive(0, 0.2);
+			Timer.delay(2.0);
+			driveTrain.drive(0.2, 0);
+ 		  }
+	}
+
+     }
      
-     private double exercise_3_0(){
-     	// imagine a robot between two walls. write a program that stops the robot midway between 2 parallel walls
+     private void exercise_3_0(){
+     	// imagine a robot between two walls. this program stops the robot midway between 2 parallel walls
      }
      
     /**
@@ -121,5 +128,4 @@ public class Robot extends SampleRobot {
     
     }
     
-
 }
