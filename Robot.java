@@ -31,6 +31,9 @@ public class Robot extends SampleRobot {
     */
    RobotDrive drivetrain = new RobotDrive(0, 1);
    DigitalInput frontSwitch = new DigitalInput(0);
+   DigitalInput backSwitch = newDigitalInput(1);
+   AnalogChannel frontRangeFinder = new AnalogChannel(0);
+   AnalogChannel backRangeFinder = new AnalogChannel(1);
    
     /**
      * This function is called once each time the robot enters autonomous mode.
@@ -116,6 +119,49 @@ public class Robot extends SampleRobot {
 
     }
      
+     private double getFrontDistance(){
+     	// get distance based on front range finder
+     	return frontRangeFiner.getVoltage() * 1000 / 0.98;
+     }
+     
+     private double getBackDistance(){
+     	// get distance based on back range finder
+     	return backRangeFiner.getVoltage() * 1000 / 0.98;
+     }
+     
+     private double exampleTwo(){
+     	// while we are less than 5 inches away from wall
+     	driveTrain.drive(0.2, 0); 
+
+	while (isEnabled() && isAutonomous()) {
+		  if (getFrontDistance() < 5) {				
+			driveTrain.drive(-0.2, 0); 
+			Timer.delay(2.0);          
+			driveTrain.drive(0, 0.2);
+			Timer.delay(2.0);
+			driveTrain.drive(0.2, 0);
+ 		  }
+	}
+
+     }
+     
+     private double exercise_3_0(){
+     	// imagine a robot between two walls. this program stops the robot midway between 2 parallel walls
+        double speed = 0;
+
+        while (isEnabled() && isAutonomous()) {
+        	if (getFrontDistance() > getBackDistance()){
+        		speed = 0.1;
+        	}
+        	else if (getFrontDistance() < getBackDistance()){
+        		speed = -0.1;
+        	}
+        	else{
+        		robotSpeed = 0;
+        	}
+        	driveTrain.drive(speed, 0);
+        }
+     }
      
     /**
      * This function is called once each time the robot enters operator control.
