@@ -4,6 +4,13 @@
 /* must be accompanied by the FIRST BSD license file in the root directory of */
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
+/*
+Copyright 2015 Bloomberg L.P.
+Licensed under Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International
+(CC BY-NC-ND 4.0)
+Non-commercial use only. Modifications must not be distributed. 
+Please see http://creativecommons.org/licenses/by-nc-nd/4.0/
+*/
 
 package org.usfirst.frc.team1234.robot;
 
