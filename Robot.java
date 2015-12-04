@@ -162,10 +162,10 @@ public class Robot extends SampleRobot {
 
         while (isEnabled() && isAutonomous()) {
         	if (getFrontDistance() > getBackDistance()){
-        		speed = 0.1;
+        		speed = 0.2;
         	}
         	else if (getFrontDistance() < getBackDistance()){
-        		speed = -0.1;
+        		speed = -0.2;
         	}
         	else{
         		speed = 0;
