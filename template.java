@@ -92,12 +92,12 @@ public class Robot extends SampleRobot {
      
      private double getFrontDistance(){
      	// get distance based on front range finder
-     	return frontRangeFinder.getVoltage() * 1000 / 0.98;
+     	return frontRangeFinder.getVoltage()  / 0.0098;
      }
      
      private double getBackDistance(){
      	// get distance based on back range finder
-     	return backRangeFinder.getVoltage() * 1000 / 0.98;
+     	return backRangeFinder.getVoltage() / 0.0098;
      }
      
      private void exampleTwo(){
@@ -105,7 +105,7 @@ public class Robot extends SampleRobot {
      	driveTrain.drive(0.2, 0); 
 
      	while (isEnabled() && isAutonomous()) {
-		  if (getFrontDistance() < 5) {				
+		  if (getFrontDistance() < 100) {				
 			driveTrain.drive(-0.2, 0); 
 			Timer.delay(2.0);          
 			driveTrain.drive(0, 0.2);
