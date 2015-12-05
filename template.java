@@ -85,8 +85,8 @@ public class Robot extends SampleRobot {
     
     private void exercise_1_1()
     {
-	//If we are driving forward AND the front switch is pressed, drive backwards.
-	// Keep driving back till back switch is pressed, then drive forwards again!
+	//If we are driving forward AND the front switch is pressed, turn right and drive backwards.
+	//If we are driving backward AND the back switch is pressed, turn left and drive forwards.
 
     }
      
